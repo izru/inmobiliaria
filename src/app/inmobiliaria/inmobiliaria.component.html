@@ -1,0 +1,62 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+
+<div class="container">
+<div class="row">
+
+  <div class="col-xs-6"> 
+    
+     <div class="filtroDetalle"> 
+      <div>
+        <label for="filtro" id="filtro" >Filtro:</label>
+        <input name="filtro" placeholder="nombre o direccion" >    
+      </div>
+    
+      
+      <div  >
+          <label for="alquiler">Alquiler:</label>                   
+         <input type="checkbox" name="alquiler"  value="true"  >
+         </div>
+      <div>
+         <label for="alquiler">Venta:</label> 
+          <input type="checkbox" name="alquiler" value="false"    >             
+       </div>
+       <div>
+         <label>Precio</label>
+         <label for="max">Max</label>
+         <input name="max" >  
+         <label for="min">Min</label>
+         <input name="min" >  
+       </div>
+       </div>
+
+
+
+
+
+    <div class="panel panel-info" id="listado">
+      <div class="panel-heading">
+        <h3 class="panel-title"> </h3> 
+      </div>    
+      <div class="panel-body">       
+        
+        <app-resultado (eventoEmitir)="recibirCasa($event)"></app-resultado> 
+      </div>  <!--panel body-->
+    </div>
+  </div> 
+
+
+<div class="col-xs-6">      
+  <div class="panel panel-info" id="listado">
+    <div class="panel-heading">
+      <h3 class="panel-title"> </h3> 
+    </div>    
+    <div class="panel-body">       
+      <app-detalle  [casaParametro]="casa" ></app-detalle>  
+    </div>  <!--panel body-->
+  </div>
+</div> 
+
+</div><!--row-->
+
+</div>

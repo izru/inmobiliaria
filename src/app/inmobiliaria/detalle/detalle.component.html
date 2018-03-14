@@ -1,0 +1,29 @@
+<div *ngIf="casa!=undefined">
+<div >
+{{casa |json}}
+
+
+<!--<p [class]="(casa.alquiler)?'venta':'alquiler'">{{casa.alquiler}}</p>-->
+<img src="{{casa.foto}}" alt="{{casa.nombre}}">
+<!--<img class ="logo" *ngIf="casa.isv" src="/assets/img/glutenicon.png" alt="sin gluten">-->
+</div>
+<div>
+<span class="glyphicon glyphicon-picture"></span>
+<p> 
+  <span class="precio"> {{casa.precio}} €</span>
+  <span class="nombre">{{casa.nombre | uppercase}}</span>
+</p>
+<br>
+<p class="direccion">
+    <span class="glyphicon glyphicon-picture"></span>
+  {{casa.direccion}}
+</p>
+<p class="habitaciones">
+  <span class="glyphicon glyphicon-home"></span>
+  {{casa.habitaciones}}
+</p>
+</div>
+</div>
+
+
+
