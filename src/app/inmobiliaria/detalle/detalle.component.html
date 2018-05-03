@@ -1,28 +1,40 @@
 <div *ngIf="casa!=undefined">
-<div >
-{{casa |json}}
+  <div >
+   <!-- {{casa |json}}-->
 
 
-<!--<p [class]="(casa.alquiler)?'venta':'alquiler'">{{casa.alquiler}}</p>-->
-<img src="{{casa.foto}}" alt="{{casa.nombre}}">
-<!--<img class ="logo" *ngIf="casa.isv" src="/assets/img/glutenicon.png" alt="sin gluten">-->
-</div>
-<div>
-<span class="glyphicon glyphicon-picture"></span>
-<p> 
-  <span class="precio"> {{casa.precio}} €</span>
-  <span class="nombre">{{casa.nombre | uppercase}}</span>
-</p>
-<br>
-<p class="direccion">
+    <h3 [class]="(casa.alquiler)?'alquiler':'venta'">
+      <span *ngIf="casa.alquiler" >ALQUILER</span>
+      <span *ngIf="!casa.alquiler" >VENTA</span>
+    </h3>
+    <img src="{{casa.foto}}" alt="{{casa.nombre}}">    
+  </div>
+  <div>
     <span class="glyphicon glyphicon-picture"></span>
-  {{casa.direccion}}
-</p>
-<p class="habitaciones">
-  <span class="glyphicon glyphicon-home"></span>
-  {{casa.habitaciones}}
-</p>
-</div>
+    <p>  
+      <span class="nombre">{{casa.nombre | uppercase}}</span>     
+      <span class="precio" *ngIf="casa.alquiler" >{{casa.precio}} €/mes</span>
+      <span class="precio" *ngIf="!casa.alquiler" >{{casa.precio}} €</span>      
+    </p>    
+    <br>
+    <p class="direccion">
+      <span class="glyphicon glyphicon-picture"></span>
+      {{casa.direccion}}
+    </p>
+    <p class="habitaciones">
+      <span class="glyphicon glyphicon-home"></span>
+      {{casa.habitaciones}} habitaciones
+    </p>
+    <h3>Servicios</h3>
+    <div class="servicios">      
+        <div *ngFor="let servicio of casa.servicios  " >  
+          {{servicio.nombre}}  
+          <input type="checkbox"  [checked]=servicio.disponible>
+        </div>
+             
+        
+    </div>
+  </div>
 </div>
 
 

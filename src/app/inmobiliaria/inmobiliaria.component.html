@@ -4,57 +4,48 @@
 <div class="container">
 <div class="row">
 
-  <div class="col-xs-6"> 
-    
-     <div class="filtroDetalle"> 
-      <div>
-        <label for="filtro" id="filtro" >Filtro:</label>
-        <input name="filtro" placeholder="nombre o direccion" >    
-      </div>
-    
-      
-      <div  >
+  <div class="col-sm-6"> 
+      <h3>Filtros</h3>
+      <div >
+          <input class="todo" type="search" [(ngModel)]="searchText" name="filtro" placeholder="nombre o direccion" >    
+              
           <label for="alquiler">Alquiler:</label>                   
-         <input type="checkbox" name="alquiler"  value="true"  >
-         </div>
-      <div>
-         <label for="alquiler">Venta:</label> 
-          <input type="checkbox" name="alquiler" value="false"    >             
-       </div>
-       <div>
-         <label>Precio</label>
-         <label for="max">Max</label>
-         <input name="max" >  
-         <label for="min">Min</label>
-         <input name="min" >  
-       </div>
-       </div>
+          <input  type="search" [(ngModel)]="alquiler" type="checkbox" name="alquiler"  >
+          
+          <label for="venta">Venta:</label> 
+          <input  type="search" [(ngModel)]="venta" type="checkbox" name="venta" value="false" >             
+                
+          <br>
+          <label>Precio</label> 
+          <br>
+          <label for="max">Max</label>         
+          <input   type="search" [(ngModel)]="max" name="max" >  
+          <label  for="min">Min</label>
+          <input   type="search" [(ngModel)]="min" name="min" >  
+          
+          
+        </div>
+     
+        <section >
+            <h3>Lista de casas</h3>
+            <div class="row">            
+                            
+                <div   *ngFor="let casa of casas | filtrosCasas :searchText:alquiler:venta:max:min " >  
+                  <div class="thumbnail" (click)="seleccionar($event, casa)" >         
+                    <img src="{{casa.foto}}" alt="{{casa.nombre}}">          
+                    <div id="casa caption"> 
+                      {{casa.nombre}}<span class="precio derecha"> {{casa.precio}} €</span>
+                    </div>
+                  </div>
+                
+              </div>
+            </div>
+          </section>
+        </div> 
 
 
-
-
-
-    <div class="panel panel-info" id="listado">
-      <div class="panel-heading">
-        <h3 class="panel-title"> </h3> 
-      </div>    
-      <div class="panel-body">       
-        
-        <app-resultado (eventoEmitir)="recibirCasa($event)"></app-resultado> 
-      </div>  <!--panel body-->
-    </div>
-  </div> 
-
-
-<div class="col-xs-6">      
-  <div class="panel panel-info" id="listado">
-    <div class="panel-heading">
-      <h3 class="panel-title"> </h3> 
-    </div>    
-    <div class="panel-body">       
+<div class="col-sm-6"> 
       <app-detalle  [casaParametro]="casa" ></app-detalle>  
-    </div>  <!--panel body-->
-  </div>
 </div> 
 
 </div><!--row-->

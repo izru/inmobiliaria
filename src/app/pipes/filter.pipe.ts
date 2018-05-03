@@ -2,32 +2,78 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 import { Casa } from '../model/casa';
 @Pipe({
-  name: 'filtrosRecetas'
+  name: 'filtrosCasas'
 })
 export class Filter implements PipeTransform {
 /**
- * filtro para buscar en una coleccion de coches. no es CaseSensitive
- * @param listaCasas : Coche[] array o coleccion de coches
- * @param searchText : string con la marca o modelo de coche
+ * filtro para buscar en una coleccion . no es CaseSensitive
+ * @param listaCasas : Casa[] array o coleccion de casas
+ * @param searchText : string con la nombre o direccion
  */
-  transform(listaCasas: Casa[], searchText: string, alquiler:boolean, precioMax:number, precioMin:number): Casa[] {
-
+  transform(listaCasas: Casa[], searchText: string, alquiler:boolean, venta:boolean, precioMax:number =0, precioMin:number =0): Casa[] {
+    if(!precioMin) precioMin=0;
+    if(!precioMax) precioMax=0;
     console.log(`Activado filtro de alquiler ${alquiler}`);
+    console.log('precioMin %n',precioMin);
+    console.log('precioMax %n', precioMax);
+
     //si no hay recetas retornar vacio
     if (!listaCasas) return [];
 
     let casasFilterArray: Casa[] = [];
 
-    //Filtramos si llevan gluten o no
-    if (alquiler) {
-      listaCasas.forEach(it => {
-        if (it.alquiler) {
-          casasFilterArray.push(it);
+    switch(alquiler) { 
+      case true: { 
+         if (venta){
+          casasFilterArray = listaCasas;
+         }         
+         else{          
+          listaCasas.forEach(it => {
+            if (it.alquiler) {
+              casasFilterArray.push(it);
+            }
+          });
         }
-      });
-    } else {
-      casasFilterArray = listaCasas;
-    }
+         break;         
+      } 
+      case false: { 
+        if (venta){
+          listaCasas.forEach(it => {
+            if (!it.alquiler) {
+              casasFilterArray.push(it);
+            }
+          });
+         } 
+         break; 
+      } 
+      default: { 
+        
+         break; 
+      } 
+   } 
+ 
+   if (precioMin ==0 && precioMax == 0)
+   {
+    casasFilterArray = listaCasas;
+   }
+   else if (precioMax>precioMin) {
+    listaCasas.forEach(it => {
+      if (it.precio >= precioMin && it.precio <=precioMax) {
+        casasFilterArray.push(it);
+      }      
+    });
+   } 
+   else if(precioMax==0 && precioMin>0){
+     console.log('entra');
+    listaCasas.forEach(it => {      
+      if (it.precio >= precioMin ) {
+        casasFilterArray.push(it);
+      }
+    });
+
+   }
+   
+  
 
     //De los que quedan filtramos por texto si hay
     if (!searchText) {

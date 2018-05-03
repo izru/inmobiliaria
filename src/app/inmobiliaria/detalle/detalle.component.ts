@@ -16,7 +16,7 @@ export class DetalleComponent implements OnInit {
 
   constructor(public servicioService:ServicioService) {
     console.log('DetalleComponent constructor');
-    this.casa=new Casa("cargando..");
+    this.casa=new Casa() ;
     this.id="2";
    }
 

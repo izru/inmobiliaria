@@ -1,18 +1,20 @@
 /*clase para encapsular los atributos de una Receta*/
-export class Servicios{
+export class Servicio{
     id:number;
     nombre: string;
     disponible:boolean;
     
     //solo es posible un constructor
-    constructor(nombre:string 
+    constructor(
+        nombre:string,
+        disponible:boolean 
         )       
             
         {
         console.log('Servicios constructor');
         this.id=-1;
         this.nombre=nombre;
-        this.disponible= true;  
+        this.disponible= disponible;  
         
         this.toString();
     }

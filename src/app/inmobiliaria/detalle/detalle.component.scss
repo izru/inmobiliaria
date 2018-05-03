@@ -5,17 +5,25 @@ img{
 
 }
 .venta{
-    background-color:blue;
+    color:blue;
 }
 .alquiler{
-    background-color: red;
+    color: red;
 }
 
 .precio{
     font-style: italic;
-    float:right;
-    
+    float:right;    
 }
 .nombre{
     float:left; 
+}
+
+ul{
+    li{
+        list-style: none;
+    }
+}
+.servicio{
+    border:1px solid black;
 }

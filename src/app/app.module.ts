@@ -10,14 +10,14 @@ import {HttpClientModule} from '@angular/common/http';
 //importar servicio
 import { ServicioService } from './providers/servicio.service';
 
-
+//importar filtros
+import { Filter } from './pipes/filter.pipe';
 
 import { AppComponent } from './app.component';
 import { InmobiliariaComponent } from './inmobiliaria/inmobiliaria.component';
 import { MaestroComponent } from './maestro/maestro.component';
-import { ResultadoComponent } from './inmobiliaria/resultado/resultado.component';
-
 import { DetalleComponent } from './inmobiliaria/detalle/detalle.component';
+
 
 
 
@@ -27,11 +27,10 @@ import { DetalleComponent } from './inmobiliaria/detalle/detalle.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DetalleComponent,
-  
-    ResultadoComponent,
+    DetalleComponent,    
     MaestroComponent,
-    InmobiliariaComponent
+    InmobiliariaComponent,
+    Filter
   ],
   imports: [
     BrowserModule,
